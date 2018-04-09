@@ -1,0 +1,699 @@
+{
+	"info": {
+		"_postman_id": "84bb94c8-ef48-4711-93f2-b7ab3faf8f0e",
+		"name": "Thinking Cities - IoTAs UL2.0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "IoTAs / registered devices",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON;",
+							"try {",
+							"    tests[\"Body contains headers\"] = responseBody.has(\"headers\");",
+							"    responseJSON = JSON.parse(responseBody);",
+							"    tests[\"Header contains host\"] = \"host\" in responseJSON.headers;",
+							"    tests[\"Header contains test parameter sent as part of request header\"] = \"my-sample-header\" in responseJSON.headers;",
+							"}",
+							"catch (e) { }",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Fiware-Service",
+						"value": "{{service}}"
+					},
+					{
+						"key": "Fiware-ServicePath",
+						"value": "{{subservice}}"
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{host_iota}}:8088/iot/devices",
+					"protocol": "https",
+					"host": [
+						"{{host_iota}}"
+					],
+					"port": "8088",
+					"path": [
+						"iot",
+						"devices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IoTAs / registered device",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON;",
+							"try {",
+							"    tests[\"Body contains headers\"] = responseBody.has(\"headers\");",
+							"    responseJSON = JSON.parse(responseBody);",
+							"    tests[\"Header contains host\"] = \"host\" in responseJSON.headers;",
+							"    tests[\"Header contains test parameter sent as part of request header\"] = \"my-sample-header\" in responseJSON.headers;",
+							"}",
+							"catch (e) { }",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Fiware-Service",
+						"value": "{{service}}"
+					},
+					{
+						"key": "Fiware-ServicePath",
+						"value": "{{subservice}}",
+						"disabled": true
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{host_iota}}:8088/iot/devices/id_sen1?protocol=IoTA-UL",
+					"protocol": "https",
+					"host": [
+						"{{host_iota}}"
+					],
+					"port": "8088",
+					"path": [
+						"iot",
+						"devices",
+						"id_sen1"
+					],
+					"query": [
+						{
+							"key": "protocol",
+							"value": "IoTA-UL"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IoTAs / register UL device",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON;",
+							"try {",
+							"    tests[\"Body contains headers\"] = responseBody.has(\"headers\");",
+							"    responseJSON = JSON.parse(responseBody);",
+							"    tests[\"Header contains host\"] = \"host\" in responseJSON.headers;",
+							"    tests[\"Header contains test parameter sent as part of request header\"] = \"my-sample-header\" in responseJSON.headers;",
+							"}",
+							"catch (e) { }",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Fiware-Service",
+						"value": "{{service}}"
+					},
+					{
+						"key": "Fiware-ServicePath",
+						"value": "{{subservice}}",
+						"disabled": true
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r    \"devices\": [ \r        { \r            \"device_id\": \"id_sen1\", \r            \"entity_name\": \"sen1\", \r            \"entity_type\": \"sensor\", \r            \"attributes\": [ \r                  { \"object_id\": \"t\", \"name\": \"temperature\", \"type\": \"float\" },\r                  { \"object_id\": \"h\", \"name\": \"humidity\", \"type\": \"float\" }\r            ],\r            \"lazy\":[\r                  { \"object_id\": \"l\", \"name\": \"luminosity\", \"type\": \"percentage\" }\r            ],\r            \"commands\": [\r                  { \"object_id\": \"u\", \"name\": \"turn\", \"type\": \"string\" }\r            ],\r            \"static_attributes\": [\r                  { \"name\": \"serialID\", \"type\": \"string\", \"value\": \"02598347\" }\r            ],\r\t\t\t\"protocol\": \"IoTA-UL\",\r\t\t\t\"transport\": \"HTTP\"\r        }\r    ]\r}\r"
+				},
+				"url": {
+					"raw": "https://{{host_iota}}:8088/iot/devices",
+					"protocol": "https",
+					"host": [
+						"{{host_iota}}"
+					],
+					"port": "8088",
+					"path": [
+						"iot",
+						"devices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IoTAs / send UL measure",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON;",
+							"try {",
+							"    tests[\"Body contains headers\"] = responseBody.has(\"headers\");",
+							"    responseJSON = JSON.parse(responseBody);",
+							"    tests[\"Header contains host\"] = \"host\" in responseJSON.headers;",
+							"    tests[\"Header contains test parameter sent as part of request header\"] = \"my-sample-header\" in responseJSON.headers;",
+							"}",
+							"catch (e) { }",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Fiware-Service",
+						"value": "{{service}}"
+					},
+					{
+						"key": "Fiware-ServicePath",
+						"value": "{{subservice}}",
+						"disabled": true
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/plain"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "t|24#h|50"
+				},
+				"url": {
+					"raw": "http://{{host_iota}}:8085/iot/d?k={{apikey}}&i=id_sen1",
+					"protocol": "http",
+					"host": [
+						"{{host_iota}}"
+					],
+					"port": "8085",
+					"path": [
+						"iot",
+						"d"
+					],
+					"query": [
+						{
+							"key": "k",
+							"value": "{{apikey}}"
+						},
+						{
+							"key": "i",
+							"value": "id_sen1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IoTAs / deregister UL device",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON;",
+							"try {",
+							"    tests[\"Body contains headers\"] = responseBody.has(\"headers\");",
+							"    responseJSON = JSON.parse(responseBody);",
+							"    tests[\"Header contains host\"] = \"host\" in responseJSON.headers;",
+							"    tests[\"Header contains test parameter sent as part of request header\"] = \"my-sample-header\" in responseJSON.headers;",
+							"}",
+							"catch (e) { }",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Fiware-Service",
+						"value": "{{service}}"
+					},
+					{
+						"key": "Fiware-ServicePath",
+						"value": "{{subservice}}"
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{host_iota}}:8088/iot/devices/id_relHum_room2?protocol=IoTA-UL ",
+					"protocol": "https",
+					"host": [
+						"{{host_iota}}"
+					],
+					"port": "8088",
+					"path": [
+						"iot",
+						"devices",
+						"id_relHum_room2"
+					],
+					"query": [
+						{
+							"key": "protocol",
+							"value": "IoTA-UL "
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IoTAs / register UL device temp entity room2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON;",
+							"try {",
+							"    tests[\"Body contains headers\"] = responseBody.has(\"headers\");",
+							"    responseJSON = JSON.parse(responseBody);",
+							"    tests[\"Header contains host\"] = \"host\" in responseJSON.headers;",
+							"    tests[\"Header contains test parameter sent as part of request header\"] = \"my-sample-header\" in responseJSON.headers;",
+							"}",
+							"catch (e) { }",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Fiware-Service",
+						"value": "{{service}}"
+					},
+					{
+						"key": "Fiware-ServicePath",
+						"value": "{{subservice}}"
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r    \"devices\": [ \r        { \r            \"device_id\": \"id_temp_room2\", \r            \"entity_name\": \"room2\", \r            \"entity_type\": \"Room\", \r            \"attributes\": [ \r                  { \"object_id\": \"t\", \"name\": \"temperature\", \"type\": \"float\" }\r            ],\r\t\t\t\"protocol\": \"IoTA-UL\",\r\t\t\t\"transport\": \"HTTP\"\r        }\r    ]\r}\r"
+				},
+				"url": {
+					"raw": "https://{{host_iota}}:8088/iot/devices",
+					"protocol": "https",
+					"host": [
+						"{{host_iota}}"
+					],
+					"port": "8088",
+					"path": [
+						"iot",
+						"devices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IoTAs / register UL device humidity entity room2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON;",
+							"try {",
+							"    tests[\"Body contains headers\"] = responseBody.has(\"headers\");",
+							"    responseJSON = JSON.parse(responseBody);",
+							"    tests[\"Header contains host\"] = \"host\" in responseJSON.headers;",
+							"    tests[\"Header contains test parameter sent as part of request header\"] = \"my-sample-header\" in responseJSON.headers;",
+							"}",
+							"catch (e) { }",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Fiware-Service",
+						"value": "{{service}}"
+					},
+					{
+						"key": "Fiware-ServicePath",
+						"value": "{{subservice}}"
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r    \"devices\": [ \r        { \r            \"device_id\": \"id_relHum_room2\", \r            \"entity_name\": \"room2\", \r            \"entity_type\": \"Room\", \r            \"attributes\": [ \r                  { \r                  \t\"object_id\": \"hr\", \r                \t\"name\": \"relativeHumidity\", \r                \t\"type\": \"float\" \r                  \t\r                  }\r            ],\r\t\t\t\"protocol\": \"IoTA-UL\",\r\t\t\t\"transport\": \"HTTP\"\r        }\r    ]\r}"
+				},
+				"url": {
+					"raw": "https://{{host_iota}}:8088/iot/devices",
+					"protocol": "https",
+					"host": [
+						"{{host_iota}}"
+					],
+					"port": "8088",
+					"path": [
+						"iot",
+						"devices"
+					]
+				},
+				"description": "sensor humedad para entidad room1"
+			},
+			"response": []
+		},
+		{
+			"name": "IoTAs / send UL measure",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON;",
+							"try {",
+							"    tests[\"Body contains headers\"] = responseBody.has(\"headers\");",
+							"    responseJSON = JSON.parse(responseBody);",
+							"    tests[\"Header contains host\"] = \"host\" in responseJSON.headers;",
+							"    tests[\"Header contains test parameter sent as part of request header\"] = \"my-sample-header\" in responseJSON.headers;",
+							"}",
+							"catch (e) { }",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Fiware-Service",
+						"value": "{{service}}"
+					},
+					{
+						"key": "Fiware-ServicePath",
+						"value": "{{subservice}}",
+						"disabled": true
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/plain"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "t|24"
+				},
+				"url": {
+					"raw": "http://{{host_iota}}:8085/iot/d?k={{apikey}}&i=id_temp_room2",
+					"protocol": "http",
+					"host": [
+						"{{host_iota}}"
+					],
+					"port": "8085",
+					"path": [
+						"iot",
+						"d"
+					],
+					"query": [
+						{
+							"key": "k",
+							"value": "{{apikey}}"
+						},
+						{
+							"key": "i",
+							"value": "id_temp_room2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IoTAs / send UL measure hr",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON;",
+							"try {",
+							"    tests[\"Body contains headers\"] = responseBody.has(\"headers\");",
+							"    responseJSON = JSON.parse(responseBody);",
+							"    tests[\"Header contains host\"] = \"host\" in responseJSON.headers;",
+							"    tests[\"Header contains test parameter sent as part of request header\"] = \"my-sample-header\" in responseJSON.headers;",
+							"}",
+							"catch (e) { }",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Fiware-Service",
+						"value": "{{service}}"
+					},
+					{
+						"key": "Fiware-ServicePath",
+						"value": "{{subservice}}",
+						"disabled": true
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/plain"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "hr|50"
+				},
+				"url": {
+					"raw": "http://{{host_iota}}:8085/iot/d?k={{apikey}}&i=id_relHum_room2",
+					"protocol": "http",
+					"host": [
+						"{{host_iota}}"
+					],
+					"port": "8085",
+					"path": [
+						"iot",
+						"d"
+					],
+					"query": [
+						{
+							"key": "k",
+							"value": "{{apikey}}"
+						},
+						{
+							"key": "i",
+							"value": "id_relHum_room2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IoTAs / register UL device tempBis entity room2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON;",
+							"try {",
+							"    tests[\"Body contains headers\"] = responseBody.has(\"headers\");",
+							"    responseJSON = JSON.parse(responseBody);",
+							"    tests[\"Header contains host\"] = \"host\" in responseJSON.headers;",
+							"    tests[\"Header contains test parameter sent as part of request header\"] = \"my-sample-header\" in responseJSON.headers;",
+							"}",
+							"catch (e) { }",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Fiware-Service",
+						"value": "{{service}}"
+					},
+					{
+						"key": "Fiware-ServicePath",
+						"value": "{{subservice}}",
+						"disabled": true
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r    \"devices\": [ \r        { \r            \"device_id\": \"id_tempBis_room2\", \r            \"entity_name\": \"room2\", \r            \"entity_type\": \"Room\", \r            \"attributes\": [ \r                  { \"object_id\": \"t\", \"name\": \"temperature\", \"type\": \"float\" }\r            ],\r\t\t\t\"protocol\": \"IoTA-UL\",\r\t\t\t\"transport\": \"HTTP\"\r        }\r    ]\r}\r"
+				},
+				"url": {
+					"raw": "https://{{host_iota}}:8088/iot/devices",
+					"protocol": "https",
+					"host": [
+						"{{host_iota}}"
+					],
+					"port": "8088",
+					"path": [
+						"iot",
+						"devices"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
